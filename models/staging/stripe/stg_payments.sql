@@ -4,9 +4,8 @@ with payments as (
         id as customer_id,
         paymentmethod as payment_method,
         status,
-        amount/100 as amount,
-        created as order_date
-    -- from  `dbt-tutorial.stripe.payment`   
+        {{cents_to_dollars('amount')}} as amount,
+        created as order_date  
     from {{source('stripe','payment')}}
 )
 

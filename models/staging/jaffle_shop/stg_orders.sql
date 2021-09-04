@@ -8,7 +8,6 @@ with orders as (
 
     -- from `dbt-tutorial.jaffle_shop.orders`
     from {{ source('jaffle_shop', 'orders') }}
-
-
 )
 select * from orders
+{{limit_data_in_dev('order_date',5000)}}
